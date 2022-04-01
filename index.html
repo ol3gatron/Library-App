@@ -12,15 +12,19 @@
       <h1>Add Book</h1>
       <div class="input-element">
         <p><label for="title">Book Title</label></p>
-        <input type="text" id="title" name="title" />
+        <input type="text" id="title" name="title" required />
       </div>
       <div class="input-element">
         <p><label for="author">Author</label></p>
-        <input type="text" id="author" name="author" />
+        <input type="text" id="author" name="author" required />
       </div>
       <div class="input-element">
-        <p><label for="isbn">ISBN</label></p>
-        <input type="text" id="isbn" name="isbn" />
+        <p><label for="pages">Pages</label></p>
+        <input type="number" id="pages" name="pages" required />
+      </div>
+      <div class="input-element read">
+        <label for="read">Read?</label>
+        <input type="checkbox" id="read" name="read" value="true" />
       </div>
       <button type="button" class="submit-btn">Submit</button>
     </form>
@@ -29,22 +33,11 @@
       <div class="library-header">
         <div class="title-header">Title</div>
         <div class="author-header">Author</div>
-        <div class="isbn-header">ISBN</div>
+        <div class="pages-header">Pages</div>
+        <div class="read-header">Read?</div>
       </div>
 
-      <div class="library-main">
-        <div class="record">
-          <div class="title">The Hobbit</div>
-          <div class="author">J.R.R. Tolkien</div>
-          <div class="isbn">9780044403371</div>
-        </div>
-
-        <div class="record">
-          <div class="title">The Girl with the Dragon Tattoo</div>
-          <div class="author">Stieg Larsson</div>
-          <div class="isbn">9789113014081</div>
-        </div>
-      </div>
+      <div class="library-main"></div>
     </div>
 
     <script src="script.js"></script>
