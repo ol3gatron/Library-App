@@ -4,32 +4,47 @@ const submitBtn = document.querySelector(".submit-btn");
 
 myLibrary = [
   {
-    title: "Carrie",
-    author: "Stephen King ",
-    pages: "199",
-    read: false,
-  },
-  {
-    title: "The Girl with the Dragon Tattoo",
-    author: "Stieg Larsson",
+    title: "Девушка с татуировкой дракона",
+    author: "Стиг Ларссон",
     pages: "525",
     read: true,
+    readSwitch: function() {
+      this.read = !this.read
+    }
   },
   {
-    title: "Book 3",
-    author: "Stephen King ",
+    title: "Магистр дьявольского культа",
+    author: "Мосян Тунсю",
+    pages: "1481",
+    read: true,
+    readSwitch: function() {
+      this.read = !this.read
+    }
+  },
+  {
+    title: "Кэрри",
+    author: "Стивен Кинг",
     pages: "199",
     read: false,
+    readSwitch: function() {
+      this.read = !this.read
+    }
   },{
-    title: "Book 4",
-    author: "Stephen King ",
-    pages: "199",
+    title: "Учитель и ученик",
+    author: "Клаудия Грэй",
+    pages: "337",
     read: false,
+    readSwitch: function() {
+      this.read = !this.read
+    }
   },{
-    title: "Book 5",
-    author: "Stephen King ",
-    pages: "199",
+    title: "Лето в пионерском галстуке",
+    author: "Катерина Сильванова",
+    pages: "423",
     read: false,
+    readSwitch: function() {
+      this.read = !this.read
+    }
   },
 ]
 
@@ -43,8 +58,10 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.readSwitch = function() {
-  this.read = !read
+  this.read = !this.read
+
 }
+
 
 // Create and add book object to books array from user's input
 function addBookToLibrary() {
@@ -73,6 +90,15 @@ function displayBooks(booksArray) {
       displayBooks(myLibrary)
     })
   })
+
+  let reads = document.querySelectorAll(".read")
+reads.forEach((read) => {
+  read.addEventListener("click", () => {
+    myLibrary[read.parentElement.getAttribute("data-record")].readSwitch()
+    clearRecords()
+    displayBooks(myLibrary)
+  })
+})
 }
 
 // Create DOM elemetns such as: record > title, author, pages, read
@@ -137,4 +163,3 @@ submitBtn.addEventListener("click", () => {
 })
 
 displayBooks(myLibrary)
-
