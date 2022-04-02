@@ -74,4 +74,5 @@ input[type="number"] {
   background-color: #fff;
   border: 1px solid #cac9c9;
   color: #857171;
+  border-radius: 3px;
 }

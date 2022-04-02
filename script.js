@@ -1,14 +1,8 @@
-const title = document.querySelector("#title")
-const author = document.querySelector("#author")
-const isbn = document.querySelector("#isbn")
+//UI Elements
+const submitBtn = document.querySelector(".submit-btn");
 
-const check = document.querySelector("#read")
 
-const library = document.querySelector(".library-main")
-
-const submit = document.querySelector(".submit-btn")
-
-let myLibrary = [
+myLibrary = [
   {
     title: "Carrie",
     author: "Stephen King ",
@@ -23,6 +17,8 @@ let myLibrary = [
   }
 ]
 
+
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -30,105 +26,79 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-function createRecord(array) {
-  let record = document.createElement("div")
+// Create and add book object to books array from user's input
+function addBookToLibrary() {
+  let title = document.querySelector("#title").value
+  let author = document.querySelector("#author").value
+  let pages = document.querySelector("#pages").value
+  let read = document.querySelector("#read").checked
+
+  let newBook = new Book(title, author, pages, read)
+  myLibrary.push(newBook)
+}
+
+// Loop throuh books array to display them on page
+function displayBooks(booksArray) {
+  for (let i = 0; i < booksArray.length; i++) {
+    createRecordElement(booksArray, i)
+  }
+}
+
+// Create DOM elemetns such as: record > title, author, pages, read
+function createRecordElement(booksArray, i) {
+  const library = document.querySelector(".library-main")
+
+  const record = document.createElement("div")
   record.classList.add("record")
+  record.setAttribute("data-record", `${i}`)
   library.appendChild(record)
 
-  let title = document.createElement("div")
+  const title = document.createElement("div")
   title.classList.add("title")
   record.appendChild(title)
-  title.textContent = array[i].title
+  title.textContent = booksArray[i].title
 
-  let author = document.createElement("div")
+  const author = document.createElement("div")
   author.classList.add("author")
   record.appendChild(author)
-  author.textContent = array[i].author
+  author.textContent = booksArray[i].author
 
-  let pages = document.createElement("div")
+  const pages = document.createElement("div")
   pages.classList.add("pages")
   record.appendChild(pages)
-  pages.textContent = array[i].pages
+  pages.textContent = booksArray[i].pages
 
-  if (array[i].read == true) {
-    let read = document.createElement("div")
-    read.classList.add("read")
-    record.appendChild(read)
+  const read = document.createElement("read")
+  read.classList.add("read")
+  record.appendChild(read)
+  if (booksArray[i].read) {
     read.textContent = "Read"
   } else {
-    let read = document.createElement("div")
-    read.classList.add("read")
-    record.appendChild(read)
     read.textContent = "Not Read"
   }
-
-
-
-  let deleteBtn = document.createElement("button")
-  deleteBtn.classList.add("delete")
-  record.appendChild(deleteBtn)
-  deleteBtn.textContent = "x"
-
 }
 
-function addBooksToLibrary(array) {
-  for (i = 0; i < array.length; i++) {
-    createRecord(array)
-    console.log(array[i])
+function clearInputs() {
+  let title = document.querySelector("#title").value = null
+  let author = document.querySelector("#author").value = null
+  let pages = document.querySelector("#pages").value = null
+  let read = document.querySelector("#read").checked = null
+  let record = document.querySelector(".record")
+}
+
+function clearRecords() {
+  let library = document.querySelector(".library-main")
+  console.log(library)
+  while (library.firstChild) {
+    library.removeChild(library.firstChild);
   }
 }
 
-function createNewRecord(obj) {
-
-  if (!obj.title || !obj.author || !obj.pages) {
-    console.log("Fill all fields")
-  } else {
-    let record = document.createElement("div")
-    record.classList.add("record")
-    library.appendChild(record)
-
-    let title = document.createElement("div")
-    title.classList.add("title")
-    record.appendChild(title)
-    title.textContent = obj.title
-
-    let author = document.createElement("div")
-    author.classList.add("author")
-    record.appendChild(author)
-    author.textContent = obj.author
-
-    let pages = document.createElement("div")
-    pages.classList.add("pages")
-    record.appendChild(pages)
-    pages.textContent = obj.pages
-
-    if (check.checked) {
-      let read = document.createElement("div")
-      read.classList.add("read")
-      record.appendChild(read)
-      read.textContent = "Read"
-    } else {
-      let read = document.createElement("div")
-      read.classList.add("read")
-      record.appendChild(read)
-      read.textContent = "Not read"
-    }
-
-    let deleteBtn = document.createElement("button")
-    deleteBtn.classList.add("delete")
-    record.appendChild(deleteBtn)
-    deleteBtn.textContent = "x"
-
-
-  }
-}
-
-
-submit.addEventListener("click", () => {
-  let newBook = new Book(title.value, author.value, pages.value, read.value)
-  myLibrary.push(newBook)
-  createNewRecord(myLibrary[myLibrary.length - 1])
-  console.log(myLibrary[myLibrary.length - 1])
+submitBtn.addEventListener("click", () => {
+  addBookToLibrary()
+  clearInputs()
+  clearRecords()
+  displayBooks(myLibrary)
 })
 
-addBooksToLibrary(myLibrary)
+displayBooks(myLibrary)
