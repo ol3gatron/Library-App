@@ -14,7 +14,23 @@ myLibrary = [
     author: "Stieg Larsson",
     pages: "525",
     read: true,
-  }
+  },
+  {
+    title: "Book 3",
+    author: "Stephen King ",
+    pages: "199",
+    read: false,
+  },{
+    title: "Book 4",
+    author: "Stephen King ",
+    pages: "199",
+    read: false,
+  },{
+    title: "Book 5",
+    author: "Stephen King ",
+    pages: "199",
+    read: false,
+  },
 ]
 
 
@@ -26,6 +42,10 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+Book.prototype.readSwitch = function() {
+  this.read = !read
+}
+
 // Create and add book object to books array from user's input
 function addBookToLibrary() {
   let title = document.querySelector("#title").value
@@ -34,6 +54,7 @@ function addBookToLibrary() {
   let read = document.querySelector("#read").checked
 
   let newBook = new Book(title, author, pages, read)
+
   myLibrary.push(newBook)
 }
 
@@ -42,6 +63,16 @@ function displayBooks(booksArray) {
   for (let i = 0; i < booksArray.length; i++) {
     createRecordElement(booksArray, i)
   }
+
+  let deleteBtns = document.querySelectorAll(".deleteBtn")
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+     myLibrary.splice(btn.parentElement.getAttribute("data-record"), 1)
+      console.log(myLibrary)
+      clearRecords()
+      displayBooks(myLibrary)
+    })
+  })
 }
 
 // Create DOM elemetns such as: record > title, author, pages, read
@@ -68,7 +99,7 @@ function createRecordElement(booksArray, i) {
   record.appendChild(pages)
   pages.textContent = booksArray[i].pages
 
-  const read = document.createElement("read")
+  const read = document.createElement("div")
   read.classList.add("read")
   record.appendChild(read)
   if (booksArray[i].read) {
@@ -76,6 +107,11 @@ function createRecordElement(booksArray, i) {
   } else {
     read.textContent = "Not Read"
   }
+
+  const deleteBtn = document.createElement("button")
+  deleteBtn.classList.add("deleteBtn")
+  record.appendChild(deleteBtn)
+  deleteBtn.textContent = "X"
 }
 
 function clearInputs() {
@@ -88,7 +124,6 @@ function clearInputs() {
 
 function clearRecords() {
   let library = document.querySelector(".library-main")
-  console.log(library)
   while (library.firstChild) {
     library.removeChild(library.firstChild);
   }
@@ -102,3 +137,4 @@ submitBtn.addEventListener("click", () => {
 })
 
 displayBooks(myLibrary)
+
