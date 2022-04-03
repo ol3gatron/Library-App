@@ -78,6 +78,8 @@ function addBookToLibrary() {
 
 // Loop throuh books array to display them on page
 function displayBooks(booksArray) {
+  createHeader()
+
   for (let i = 0; i < booksArray.length; i++) {
     createRecordElement(booksArray, i)
   }
@@ -93,9 +95,9 @@ function displayBooks(booksArray) {
   })
 
   let reads = document.querySelectorAll(".read")
-reads.forEach((read) => {
+  reads.forEach((read) => {
   read.addEventListener("click", () => {
-    myLibrary[read.parentElement.getAttribute("data-record")].readSwitch()
+    myLibrary[read.getAttribute("data-record")].readSwitch()
     clearRecords()
     displayBooks(myLibrary)
   })
@@ -106,29 +108,28 @@ reads.forEach((read) => {
 function createRecordElement(booksArray, i) {
   const library = document.querySelector(".library-main")
 
-  const record = document.createElement("div")
-  record.classList.add("record")
-  record.setAttribute("data-record", `${i}`)
-  library.appendChild(record)
-
   const title = document.createElement("div")
   title.classList.add("title")
-  record.appendChild(title)
+  title.setAttribute("data-record", `${i}`)
+  library.appendChild(title)
   title.textContent = booksArray[i].title
 
   const author = document.createElement("div")
   author.classList.add("author")
-  record.appendChild(author)
+  author.setAttribute("data-record", `${i}`)
+  library.appendChild(author)
   author.textContent = booksArray[i].author
 
   const pages = document.createElement("div")
   pages.classList.add("pages")
-  record.appendChild(pages)
+  pages.setAttribute("data-record", `${i}`)
+  library.appendChild(pages)
   pages.textContent = booksArray[i].pages
 
   const read = document.createElement("div")
   read.classList.add("read")
-  record.appendChild(read)
+  read.setAttribute("data-record", `${i}`)
+  library.appendChild(read)
   if (booksArray[i].read) {
     read.textContent = "Read"
   } else {
@@ -137,8 +138,38 @@ function createRecordElement(booksArray, i) {
 
   const deleteBtn = document.createElement("button")
   deleteBtn.classList.add("deleteBtn")
-  record.appendChild(deleteBtn)
+  library.appendChild(deleteBtn)
   deleteBtn.textContent = "X"
+}
+
+function createHeader() {
+  const library = document.querySelector(".library-main")
+
+  const titleHead = document.createElement("div")
+  titleHead.classList.add("title-header")
+  library.appendChild(titleHead)
+  titleHead.textContent = "Title"
+
+  const authorHead = document.createElement("div")
+  authorHead.classList.add("author-header")
+  library.appendChild(authorHead)
+  authorHead.textContent = "Author"
+
+  const pagesHead = document.createElement("div")
+  pagesHead.classList.add("pages-header")
+  library.appendChild(pagesHead)
+  pagesHead.textContent = "Pages"
+
+  const readHead = document.createElement("div")
+  readHead.classList.add("read-header")
+  library.appendChild(readHead)
+  readHead.textContent = "Read?"
+
+  const dltBtn = document.createElement("button")
+  dltBtn.classList.add("dlt")
+  dltBtn.classList.add("dlt-header")
+  library.appendChild(dltBtn)
+  dltBtn.textContent = "X"
 }
 
 function isInputsEmpy() {

@@ -49,12 +49,28 @@ input[type="number"] {
 
 .library-header {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+  grid-template-columns: 3fr 2fr 2fr 1fr 1fr;
+  gap: 10px;
   justify-items: center;
   align-items: center;
   font-weight: bold;
   border-bottom: 1px solid #cac9c9;
   padding-bottom: 10px;
+}
+
+.library-main {
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr 1fr 1fr;
+  gap: 10px;
+}
+
+.library-main > div {
+  align-self: center;
+}
+
+.dlt {
+  align-self: center;
+  justify-self: center;
 }
 
 .record {
@@ -77,6 +93,8 @@ input[type="number"] {
   border: 1px solid #cac9c9;
   color: #857171;
   border-radius: 3px;
+  align-self: center;
+  justify-self: center;
 }
 
 .warning {
@@ -92,4 +110,31 @@ input[type="number"] {
 
 .warning-hiden {
   position: static
+}
+
+.dlt {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #cac9c9;
+  color: #857171;
+  border-radius: 3px;
+}
+
+.dlt-header {
+  visibility: hidden;
+}
+
+.title-header, .author-header, .pages-header, .read-header {
+  font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  form {
+    width: 100%;
+  }
+
+  .library {
+    width: 100%;
+  }
 }
