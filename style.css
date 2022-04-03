@@ -60,7 +60,7 @@ input[type="number"] {
 
 .library-main {
   display: grid;
-  grid-template-columns: 3fr 2fr 2fr 1fr 1fr;
+  grid-template-columns: 3fr 2fr 1fr 1fr 1fr;
   gap: 10px;
 }
 
@@ -89,9 +89,9 @@ input[type="number"] {
 .deleteBtn {
   width: 20px;
   height: 20px;
-  background-color: #fff;
-  border: 1px solid #cac9c9;
-  color: #857171;
+  background-color: #c82333;
+  border: 1px solid #c82333;
+  color: #fff;
   border-radius: 3px;
   align-self: center;
   justify-self: center;
@@ -127,6 +127,10 @@ input[type="number"] {
 
 .title-header, .author-header, .pages-header, .read-header {
   font-weight: bold;
+}
+
+.read {
+  text-decoration: underline;
 }
 
 @media (max-width: 800px) {
