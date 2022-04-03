@@ -87,7 +87,7 @@ function displayBooks(booksArray) {
   let deleteBtns = document.querySelectorAll(".deleteBtn")
   deleteBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-     myLibrary.splice(btn.parentElement.getAttribute("data-record"), 1)
+     myLibrary.splice(btn.getAttribute("data-record"), 1)
       console.log(myLibrary)
       clearRecords()
       displayBooks(myLibrary)
@@ -138,6 +138,7 @@ function createRecordElement(booksArray, i) {
 
   const deleteBtn = document.createElement("button")
   deleteBtn.classList.add("deleteBtn")
+  deleteBtn.setAttribute("data-record", `${i}`)
   library.appendChild(deleteBtn)
   deleteBtn.textContent = "X"
 }
