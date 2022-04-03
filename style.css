@@ -36,12 +36,10 @@ input[type="number"] {
 
 .submit-btn {
   padding: 7px 30px;
-  background-color: #fff;
-  border: 1px solid #cac9c9;
-  color: #857171;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: bold;
+  color: #fff;
+  background-color: #218838;
+  border: 1px solid #218838;
+  border-radius: 5px;
 }
 
 .library {
@@ -68,6 +66,10 @@ input[type="number"] {
   border-bottom: 1px solid #cac9c9;
 }
 
+.record > div {
+  padding: 10px;
+}
+
 .deleteBtn {
   width: 20px;
   height: 20px;
@@ -75,4 +77,19 @@ input[type="number"] {
   border: 1px solid #cac9c9;
   color: #857171;
   border-radius: 3px;
+}
+
+.warning {
+  color: #fff;
+  background-color: #c82333;
+  padding: 10px 10%;
+  border-radius: 5px;
+  margin: 10px;
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
+.warning-hiden {
+  position: static
 }

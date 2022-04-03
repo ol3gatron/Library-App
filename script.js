@@ -1,5 +1,6 @@
 //UI Elements
 const submitBtn = document.querySelector(".submit-btn");
+const warningMsg = document.querySelector(".warning")
 
 
 myLibrary = [
@@ -140,6 +141,16 @@ function createRecordElement(booksArray, i) {
   deleteBtn.textContent = "X"
 }
 
+function isInputsEmpy() {
+  let title = document.querySelector("#title").value
+  let author = document.querySelector("#author").value
+  let pages = document.querySelector("#pages").value
+
+  if (!title || !author || !pages) {
+    return true
+  }
+}
+
 function clearInputs() {
   let title = document.querySelector("#title").value = null
   let author = document.querySelector("#author").value = null
@@ -155,11 +166,18 @@ function clearRecords() {
   }
 }
 
+
+
 submitBtn.addEventListener("click", () => {
-  addBookToLibrary()
-  clearInputs()
-  clearRecords()
-  displayBooks(myLibrary)
+  if (isInputsEmpy()) {
+    warningMsg.classList.add("warning-hiden")
+  } else {
+    warningMsg.classList.remove("warning-hiden")
+    addBookToLibrary()
+    clearInputs()
+    clearRecords()
+    displayBooks(myLibrary)
+  }
 })
 
 displayBooks(myLibrary)
