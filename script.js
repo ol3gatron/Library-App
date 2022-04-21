@@ -198,11 +198,14 @@ function clearRecords() {
   }
 }
 
-
+function warningMsgHide() {
+  warningMsg.classList.remove("warning-hiden")
+}
 
 submitBtn.addEventListener("click", () => {
   if (isInputsEmpy()) {
     warningMsg.classList.add("warning-hiden")
+    setTimeout(() => {warningMsg.classList.remove("warning-hiden")}, 3000)
   } else {
     warningMsg.classList.remove("warning-hiden")
     addBookToLibrary()
