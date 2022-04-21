@@ -8,33 +8,36 @@
     <title>Library</title>
   </head>
   <body>
-    <form action="">
+    <div class="container">
       <h1>Add Book</h1>
-      <div class="input-element">
-        <p><label for="title">Book Title</label></p>
-        <input type="text" id="title" name="title" required />
-      </div>
-      <div class="input-element">
-        <p><label for="author">Author</label></p>
-        <input type="text" id="author" name="author" required />
-      </div>
-      <div class="input-element">
-        <p><label for="pages">Pages</label></p>
-        <input type="number" id="pages" name="pages" required />
-      </div>
-      <div class="input-element">
-        <label for="read">Did you read?</label>
-        <input type="checkbox" id="read" name="read" value="true" />
-      </div>
-      <button type="button" class="submit-btn">Add book</button>
-    </form>
-
-    <div class="warning">Please fill all the fields!</div>
-
-    <div class="library">
-      <div class="library-main"></div>
+      <form class="book-form">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" />
+        </div>
+        <div>
+          <label for="author">Author</label>
+          <input type="text" id="author" name="author" />
+        </div>
+        <div>
+          <label for="isbn">ISBN#</label>
+          <input type="text" id="isbn" name="isbn" />
+        </div>
+        <button type="submit">Sumbit</button>
+      </form>
+      <hr />
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Read?</th>
+            <th>ISBN</th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
     </div>
-
     <script src="script.js"></script>
   </body>
 </html>
