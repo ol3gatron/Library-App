@@ -31,7 +31,16 @@ input {
   border-radius: 3px;
 }
 
-button {
+.readInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.readInput > input {
+  width: auto;
+}
+
+.submit-btn {
   width: 100%;
   padding: 5px;
   color: #ababab;
@@ -44,6 +53,10 @@ button {
 
 table {
   width: 100%;
+}
+
+th, td {
+  text-align: center;
 }
 
 .success, .error {
