@@ -33,6 +33,15 @@ UI.prototype.addBookToList = function(book) {
   list.appendChild(row)
 }
 
+// Clear fiels
+
+UI.prototype.clearFields = function() {
+  const title = document.querySelector("#title").value = ""
+  const author = document.querySelector("#author").value = ""
+  const isbn = document.querySelector("#isbn").value = ""
+  const read = document.querySelector("#read").checked = false
+}
+
 // Event listener
 const form = document.querySelector(".book-form")
 form.addEventListener("submit", function(e) {
@@ -50,6 +59,9 @@ form.addEventListener("submit", function(e) {
 
   // Add book to list
   ui.addBookToList(book);
+
+  // Clear fiels
+  ui.clearFields()
 
   e.preventDefault()
 })
