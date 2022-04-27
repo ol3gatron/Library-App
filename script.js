@@ -1,7 +1,8 @@
 // Book constructor
-function Book(title, author, isbn, read) {
+function Book(title, author, pages, isbn, read) {
   this.title = title;
   this.author = author;
+  this.pages = pages;
   this.isbn = isbn;
   this.read = read;
 }
@@ -25,6 +26,7 @@ UI.prototype.addBookToList = function(book) {
   row.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
+    <td>${book.pages}</td>
     <td>${book.isbn}</td>
     <td>${read}</td>
     <td><a href="#" class="delete">X</a></td>
@@ -33,11 +35,31 @@ UI.prototype.addBookToList = function(book) {
   list.appendChild(row)
 }
 
-// Clear fiels
+UI.prototype.showAlert = function(message, className) {
+  // Create div
+  const div = document.createElement("div")
+  // Add class name
+  div.className = `alert ${className}`
+  // Add text
+  div.appendChild(document.createTextNode(message))
+  // Get parent
+  const container = document.querySelector(".container")
+  // Get form
+  const form = document.querySelector(".book-form")
+  // Insert alert
+  container.insertBefore(div, form)
 
+  // Timeout after 3 sec
+  setTimeout(function() {
+    document.querySelector(".alert").remove();
+  }, 3000)
+}
+
+// Clear fiels
 UI.prototype.clearFields = function() {
   const title = document.querySelector("#title").value = ""
   const author = document.querySelector("#author").value = ""
+  const pages = document.querySelector("#pages").value = ""
   const isbn = document.querySelector("#isbn").value = ""
   const read = document.querySelector("#read").checked = false
 }
@@ -48,20 +70,28 @@ form.addEventListener("submit", function(e) {
   // Get form values
   const title = document.querySelector("#title").value
   const author = document.querySelector("#author").value
+  const pages = document.querySelector("#pages").value
   const isbn = document.querySelector("#isbn").value
   const read = document.querySelector("#read").checked
 
   // Instantiate book
-  const book = new Book(title, author, isbn, read)
+  const book = new Book(title, author, pages, isbn, read)
 
   // Instantiate UI
   const ui = new UI()
 
-  // Add book to list
-  ui.addBookToList(book);
+  // Validate
+  if (!title || !author || !pages || !isbn) {
+    ui.showAlert("Please fill all fields", "error")
+  } else {
+    ui.showAlert("Book added!", "success")
 
-  // Clear fiels
-  ui.clearFields()
+    // Add book to list
+    ui.addBookToList(book);
+
+    // Clear fiels
+    ui.clearFields()
+  }
 
   e.preventDefault()
 })
