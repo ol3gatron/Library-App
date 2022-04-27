@@ -55,6 +55,13 @@ UI.prototype.showAlert = function(message, className) {
   }, 3000)
 }
 
+// Delete book
+UI.prototype.deleteBook = function(target) {
+  if (target.className === 'delete') {
+    target.parentElement.parentElement.remove()
+  }
+}
+
 // Clear fiels
 UI.prototype.clearFields = function() {
   const title = document.querySelector("#title").value = ""
@@ -64,7 +71,7 @@ UI.prototype.clearFields = function() {
   const read = document.querySelector("#read").checked = false
 }
 
-// Event listener
+// Event listener for add book
 const form = document.querySelector(".book-form")
 form.addEventListener("submit", function(e) {
   // Get form values
@@ -92,6 +99,20 @@ form.addEventListener("submit", function(e) {
     // Clear fiels
     ui.clearFields()
   }
+
+  e.preventDefault()
+})
+
+// Event listener for delete
+document.querySelector(".book-list").addEventListener("click", function(e) {
+  // Instantiate UI
+  const ui = new UI()
+
+  // Delete book
+  ui.deleteBook(e.target)
+
+  //Show message
+  ui.showAlert("Book removed!", "success")
 
   e.preventDefault()
 })
