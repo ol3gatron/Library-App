@@ -63,6 +63,8 @@ th, td {
   color: white;
   padding: 10px;
   margin: 5px 0 15px 0;
+  border-radius: 3px;
+  text-align: center;
 }
 
 .success {
@@ -71,4 +73,9 @@ th, td {
 
 .error {
   background-color: red;
+}
+
+.read {
+  text-decoration: underline;
+  cursor: pointer;
 }

@@ -28,7 +28,7 @@ UI.prototype.addBookToList = function(book) {
     <td>${book.author}</td>
     <td>${book.pages}</td>
     <td>${book.isbn}</td>
-    <td>${read}</td>
+    <td class="read">${read}</td>
     <td><a href="#" class="delete">X</a></td>
   `;
 
@@ -49,10 +49,10 @@ UI.prototype.showAlert = function(message, className) {
   // Insert alert
   container.insertBefore(div, form)
 
-  // Timeout after 3 sec
+  // Timeout after 2 sec
   setTimeout(function() {
     document.querySelector(".alert").remove();
-  }, 3000)
+  }, 2000)
 }
 
 // Delete book
@@ -115,14 +115,14 @@ form.addEventListener("submit", function(e) {
 // Event listener for delete
 document.querySelector(".book-list").addEventListener("click", function(e) {
   if (e.target.textContent === "X") {
-// Instantiate UI
-const ui = new UI()
+    // Instantiate UI
+    const ui = new UI()
 
-// Delete book
-ui.deleteBook(e.target)
+    // Delete book
+    ui.deleteBook(e.target)
 
-//Show message
-ui.showAlert("Book removed!", "success")
+    //Show message
+    ui.showAlert("Book removed!", "success")
   }
 
 
