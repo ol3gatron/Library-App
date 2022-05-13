@@ -108,6 +108,21 @@ class Store {
     localStorage.setItem('books', JSON.stringify(books))
   }
 
+  static changeReadStatus(target) {
+    console.log(target)
+    const books = Store.getBooks()
+
+    books.forEach(function(book) {
+      if (book.isbn === target && book.read) {
+        book.read = false
+      } else if (book.isbn === target && !book.read) {
+        book.read = true
+      }
+    })
+
+    localStorage.setItem('books', JSON.stringify(books))
+  }
+
   static removeBook(isbn) {
     const books = Store.getBooks()
 
@@ -188,11 +203,17 @@ document.querySelector(".book-list").addEventListener("click", function(e) {
     // Change read status
     ui.readStatus(e.target)
 
+    // Change read status in LS
+    Store.changeReadStatus(e.target.previousElementSibling.textContent)
+
     // Show message
     ui.showAlert("Read status changed!", "success")
   } else if ((e.target.textContent === "Yes")) {
     // Change read status
     ui.readStatus(e.target)
+
+    // Change read status in LS
+    Store.changeReadStatus(e.target.previousElementSibling.textContent)
 
     //Show message
     ui.showAlert("Read status changed!", "success")
